@@ -11,6 +11,8 @@ When I am developing software for the Next I normally write using my PC and comp
 
 You pick a file to autolaunch and that's it - its very easy to change / disable / uninstall from the main NextZXOS menu
 
+Suports : "TAP" "NEX" "BAS" "SN?" "Z80"
+
 But note - This program will overwrite your autoexec.bas!
 
 This program attempts to backup your current enMenus.cfg and autoexec.bas to enMenus.bak and autoexec.bak and restore on exit but you know, sometimes..
