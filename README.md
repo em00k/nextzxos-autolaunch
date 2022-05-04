@@ -9,6 +9,8 @@ Why this exists?
 
 When I am developing software for the Next I normally write using my PC and compile / assemble direct to my FlashAir drive mapped as a drive letter (it's H if you want to know). I then press F4 and reboot the Next and test the code, this can mean me rebooting many, many times so its nice to have your file automatically launch when deep in a dev session. Manually editing autolaunch can be a real slow down if you are building multiple programs at once for testing, this allows me to pick a new progran in a few key presses. 
 
+<img src="https://github.com/em00k/src-gifs/blob/main/Autolaunch.gif">
+
 You pick a file to autolaunch and that's it and also easily change / disable / uninstall from the main NextZXOS menu
 
 This program will overwrite your autoexec.bas! 
