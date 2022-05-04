@@ -27,9 +27,9 @@ To install copy the
 - load ConfigAuto.bas 
 - It will look like the normal browser but if you PRESS SPACE you will see some options
 
-c = Clear Autolaunch?			will clear the current program from autolaunching
-i = Install Autolaunch? 		will copy enMenus.cfg and autoexec.bas for autolaunch, it should ask you to back before hand!
-u = uninstall Autolaunch?		will remove enMenus.cfg and autoexec.bas and ask you if you want to restore
+- c = Clear Autolaunch?			will clear the current program from autolaunching
+- i = Install Autolaunch? 		will copy enMenus.cfg and autoexec.bas for autolaunch, it should ask you to back before hand!
+- u = uninstall Autolaunch?		will remove enMenus.cfg and autoexec.bas and ask you if you want to restore
 
 - Once installed soft reboot
 
