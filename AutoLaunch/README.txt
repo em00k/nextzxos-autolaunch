@@ -1,18 +1,18 @@
 AutoLaunch 1.0 (certainly just a dev tool)
 
-Its not perfect but it serves a function should you need it - absolutley no warranties
+Its not perfect but it serves a function should you need it - absolutely no warranties
 
 Why this exists?
 
-When I am developing software for the Next I normally write using my PC and compile / assemble direct to my FlashAir drive mapped as a drive letter (it's H if you want to know). I then press F4 and reboot the Next and test the code, this can mean me rebooting many, many times so its nice to have your file automatically launch when deep in a dev session. Manually editing autolaunch can be a real slow down if you are building multiple programs at once for testing, this allows me to pick a new progran in a few key presses. 
+When I am developing software for the Next I normally write using my PC and compile / assemble direct to my FlashAir drive mapped as a drive letter (it's H if you want to know). I then press F4 and reboot the Next and test the code, this can mean rebooting many, many times so its nice to have your file automatically launch when in a deep in a dev session. Manually editing autolaunch can be a real slow down if you are building multiple programs at once for testing, this allows me to pick a new program in a few key presses. 
 
-You pick a file to autolaunch and that's it and also easily change / disable / uninstall from the main NextZXOS menu
+You pick a file to autolaunch and that's it - its very easy to change / disable / uninstall from the main NextZXOS menu
 
-This program will overwrite your autoexec.bas! 
+But note - This program will overwrite your autoexec.bas!
 
 This program attempts to backup your current enMenus.cfg and autoexec.bas to enMenus.bak and autoexec.bak and restore on exit but you know, sometimes..
 
-This program adds a new menu item using the new features in NextZXOS with custom menus creating a new file call c:\nextzxos\enMenus.cfg. 
+This program adds a new menu item using the new custom menus feature in NextZXOS, creating a new file called c:\nextzxos\enMenus.cfg. 
 
 To install copy the 
 
@@ -30,7 +30,7 @@ You should now see a new menu option :
 
 "Edit Autolaunch"
 
-If you select this you will see the browser again, now you can select a file from anywhere on the SD to autolaunch. Once a program is chosen, reboot and your program shoudl automitcally run.
+If you select this you will see the browser again, now you can select a file from anywhere on the SD to autolaunch. Once a program is chosen, reboot and your program should automatically run.
 
 To uninstall, soft reset and HOLD SPACE, select Edit Autolauch and pick u
 
