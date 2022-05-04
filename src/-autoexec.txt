@@ -1,0 +1,45 @@
+#autostart 20
+10 ; AutoMenu em00k '22
+20 RUN AT 3
+30 PROC SetPrefs()
+40 IF INKEY$ ="" THEN GO TO %60
+45 IF INKEY$ ="e" THEN CD "c:\autolaunch.bas" : LOAD "configauto.bas"
+50 STOP
+60 PROC LoadCFG()
+70 PROC ProcessCFG()
+80 STOP
+90 ;
+100 DEFPROC SetPrefs()
+110 ; Load the config from disk
+120  .editprefs --scheme dark
+130  .browseprefs --scheme dark --info-size --mixed-off --sort-name
+140 ENDPROC
+150 ;
+160 DEFPROC LoadCFG()
+170 ; Load the cfg for the path and file
+180  CLS
+190  CLOSE # 8
+200  OPEN # 8,"c:\sys\menu.cfg"
+210  DIM #8 TO l
+220  PRINT l
+230  CLOSE # 8
+240  LOAD "c:\sys\menu.cfg" BANK 20
+250   d$= BANK 20 PEEK$ (1,~13):dlen=2+ LEN d$
+260   a$= BANK 20 PEEK$ (1+dlen, ~32)
+270   b$= BANK 20 PEEK$ ( 1+ VAL (d$)+dlen,~13)
+280  PRINT a$
+290  PRINT b$
+300 ENDPROC
+310 ;
+320 DEFPROC ProcessCFG()
+330 ; Proces the cfg file and run the file
+340  CD a$
+350   e$=b$( LEN (b$)-2 TO )
+360  IF e$="BAS" THEN LOAD b$
+370  IF e$="TAP" THEN GO TO %9999
+380  IF e$="SNA" OR e$="SNX" THEN SPECTRUM b$
+390   .$ run b$
+400   f$=b$:.$ tapein f$ : LOAD "t:": LOAD ""
+410 ENDPROC
+420 ;
+430 SAVE "c:\nextzxos\autoexec.bas" LINE %20: STOP

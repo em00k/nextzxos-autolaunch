@@ -1,0 +1,121 @@
+#autostart 30
+10  ; AutoLaunch by em00k '22
+20  ; This file allows you to pick your autolaunch file along with backup, installing, uninstalling and restore defaults.
+30 RUN AT 3
+40 .browse f$ -t "TAP" -t "NEX" -t "BAS" -t "SN?" -t "Z80" -p "Select a file to autolaunch, SPACE for settings"
+50 IF f$="" THEN GO TO %100
+60 ;
+70 PROC GetFile(f$) TO f$
+80 PROC SaveCFG()
+90 STOP
+100 PROC LoadCFG()
+110 PROC ClearCFG()
+120 STOP
+130 ;
+140 DEFPROC GetFile(f$)
+150 ;-------- Get path and size of f$
+160  CLOSE # 8
+165  LOCAL a$
+170  DIM a$(1000)
+180  OPEN # 8,"V>a$"
+190  PWD #8
+200  RETURN #8 TO s
+210  PRINT "Length ";s
+220  PRINT "Path : ";a$( TO s-1)
+225  PRINT "File : ";f$(1 TO )
+230   f$=a$( TO s-1)+" "+f$(1 TO )
+240 ENDPROC =f$
+250 ;
+260 DEFPROC SaveCFG()
+270 ;-------- Save Config
+275  ON ERROR GO TO 325
+280  OPEN # 6,"o>c:\sys\menu.cfg"
+290  PRINT #6,s
+300  PRINT #6,f$
+310  CLOSE # 6
+320  PRINT "Saved cfg file."
+321  GO TO 330
+325  PRINT "ERROR": IF t=0 THEN PRINT "Trying REMOUNT":t=1: REMOUNT : ELSE : PRINT "ERROR": STOP
+330 ENDPROC
+340 ;
+350 DEFPROC LoadCFG()
+360 ;------- Load path and file from cfg
+365  BANK NEW %a
+370  CLOSE # 8
+375  ON ERROR GO TO 480
+380  OPEN # 8,"c:\sys\menu.cfg"
+390  DIM #8 TO l
+400  PRINT l
+410  CLOSE # 8
+420  LOAD "c:\sys\menu.cfg" BANK 20
+430   d$= BANK %a PEEK$ (1,3)
+440   ;   a$ = BANK 20 PEEK$ (5, VAL (d$)-1)
+441   a$= BANK %a PEEK$ ( LEN d$-2,~32)
+450   b$= BANK %a PEEK$ ( VAL (d$)+6,l-5- VAL d$)
+460  PRINT a$
+470  PRINT b$
+475  BANK %a CLEAR
+480 ENDPROC
+490 ;
+500 DEFPROC ClearCFG()
+510 ; ------- Ask TO remove
+520  LOCAL k
+530  PRINT '"c = Clear Autolaunch?"
+540  PRINT "i = Install Autolaunch?"
+550  PRINT "u = Uninstall Autolaunch?"
+560  PRINT '"Any other key to eixt"
+570  PAUSE 5
+580  REPEAT : ; check key
+585   NEXT #0 TO k
+590   IF k= CODE "c" THEN ERASE "c:\sys\menu.cfg": PRINT "Deleting c:\sys\menu.cfg": STOP
+600   IF k= CODE "i" THEN PROC install():k=255
+610   IF k= CODE "u" THEN PROC Uninstall():k=255
+620   IF k >= CODE " " AND k <= CODE "z" THEN STOP
+630 ;    NEXT #0 TO k
+640  REPEAT UNTIL k=255
+650 ENDPROC
+660 ;
+670 DEFPROC Install()
+680 ; backup files
+690  LOCAL a
+700  PROC Ask("Backup files?") TO a
+710  ON ERROR GO TO %750
+720  IF a=2 THEN GO TO %750
+730  COPY "c:\nextzxos\autoexec.bas" TO "c:\nextzxos\autoexec.bbk"
+740  COPY "c:\nextzxos\enMenus.cfg" TO "c:\nextzxos\enMenus.bak"
+750 ; copy new files
+760  ON ERROR GO TO %810
+770  PROC Ask("Overwrite Autoexec.bas?") TO a: IF a=2 THEN GO TO %790
+780  COPY "-autoexec.bas" TO "c:\nextzxos\autoexec.bas"
+790  PROC Ask("Overwrite enMenus.cfg?") TO a: IF a=2 THEN GO TO %810
+800  COPY "-enMenus.cfg" TO "c:\nextzxos\enMenus.cfg"
+810 ENDPROC
+820 ;
+830 DEFPROC Uninstall()
+840 ; Uninstall all this goop
+850  PROC Ask("Uninstall AutoLaunch?") TO a: IF a=2 THEN GO TO %920
+855  ON ERROR GO TO 860
+856  ERASE "c:\nextzxos\enMenus.cfg"
+857 ;
+860  PROC Ask("Restore enMenus.cfg?") TO a: IF a=2 THEN GO TO %890
+865  ON ERROR GO TO 883
+880  COPY "c:\nextzxos\enMenus.bak" TO "c:\nextzxos\enMenus.cfg"
+881 ;
+883  ON ERROR GO TO 890
+885  ERASE "c:\nextzxos\autoexec.bas"
+886 ;
+890  PROC Ask("Restore Autoexec.bas?") TO a: IF a=2 THEN GO TO %920
+895  ON ERROR GO TO 920
+910  COPY "c:\nextzxos\autoexec.bak" TO "c:\nextzxos\autoexec.bas"
+920 ENDPROC
+930 DEFPROC Ask(q$)
+940  LOCAL a
+950  PRINT q$+"(y/n)"
+960  REPEAT
+970   NEXT #0 TO k
+980   IF k= CODE "y" THEN a=1
+990   IF k= CODE "n" THEN a=2
+1000  REPEAT UNTIL a > 0
+1010 ENDPROC =a
+1020 STOP
+1030 SAVE "c:\AutoLaunch\ConfigAuto.bas" LINE %30

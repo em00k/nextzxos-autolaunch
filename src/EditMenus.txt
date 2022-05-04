@@ -1,0 +1,2 @@
+10 ; edits the menus
+20 .qe ./../nextzxos/enMenus.cfg
