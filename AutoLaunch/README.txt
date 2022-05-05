@@ -4,7 +4,7 @@ Its not perfect but it serves a function should you need it - absolutely no warr
 
 Why this exists?
 
-When I am developing software for the Next I normally write using my PC and compile / assemble direct to my FlashAir drive mapped as a drive letter (it's H if you want to know). I then press F4 and reboot the Next and test the code, this can mean rebooting many, many times so its nice to have your file automatically launch when in a deep in a dev session. Manually editing autolaunch can be a real slow down if you are building multiple programs at once for testing, this allows me to pick a new program in a few key presses. 
+When I am developing software for the Next I normally write using my PC and compile / assemble direct to my FlashAir drive mapped as a drive letter (it's H if you want to know). I then press F4 and reboot the Next and test the code, this can mean rebooting many, many times so its nice to have your file automatically launch when in a deep in a dev session. Manually editing autoexec.bas can be a real slow down if you are building multiple programs at once for testing, this allows me to pick a new program in a few key presses. 
 
 You pick a file to autolaunch and that's it - its very easy to change / disable / uninstall from the main NextZXOS menu
 
